@@ -12,7 +12,7 @@ class Application(tornado.web.Application):
 
     def __init__(self):
         handlers = [
-            (r"/", HomeHandler),
+            (r"/", HomeHandler),(r"/voet/(\w+)", VoetHandler)
             ]
 
         settings = dict(
@@ -25,6 +25,16 @@ class Application(tornado.web.Application):
 class HomeHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello World")
+        self.write("Hello World\n")
+class VoetHandler(tornado.web.RequestHandler):
+	def get(self, input):
+		temp = input
+		scramble = ""
+		while len(temp) > 0:
+			i = random.randint(0,len(temp)-1)
+			scramble = scramble + temp[i]
+			temp = temp[:i]+temp[i+1:]
+		self.write("<h1>Alex Voet</h1><br>To be scrambled: " + input + "<br> Scrambled: " + scramble + "\n")
 
 def main(port='8080', address='localhost'):
     http_server = tornado.httpserver.HTTPServer(Application())
