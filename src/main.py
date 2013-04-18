@@ -26,9 +26,9 @@ class HomeHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello World")
 
-def main(port='8080', address='127.0.0.1'):
+def main(port='8080', address='localhost'):
     http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(port, address)
+    http_server.listen(8080)
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
