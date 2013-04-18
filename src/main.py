@@ -24,8 +24,8 @@ class Application(tornado.web.Application):
 
 class HomeHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello World")
         self.write("Hello World\n")
+        
 class VoetHandler(tornado.web.RequestHandler):
 	def get(self, input):
 		temp = input
